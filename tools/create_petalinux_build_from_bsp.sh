@@ -31,3 +31,12 @@ git commit -m "$P"
 
 popd
 popd
+
+source $PETALINUX_BUILD_TOOLS/prep_image_ramdisk_for_uboot.sh
+pushd $PETALINUX_PROJS_DIR
+pushd $PETALINUX_PROJ_NAME
+git add .
+git status
+git commit -m "Created U-Boot loadables"
+popd
+popd

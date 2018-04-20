@@ -8,8 +8,11 @@ project-spec/hw-description/psu_init.tcl
 images/linux/pmufw.elf
 images/linux/zynqmp_fsbl.elf
 images/linux/Image
+images/linux/uImage
+images/linux/uramdisk.image.gz
 images/linux/system.dtb
 build/misc/linux-boot/linux-boot.elf
+images/linux/u-boot.elf
 images/linux/bl31.elf
 "
 
