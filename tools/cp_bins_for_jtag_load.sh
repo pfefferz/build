@@ -22,7 +22,8 @@ for file in $BINS; do
 		echo ERROR: $fullpath does not exist	
 		# https://unix.stackexchange.com/questions/293940/bash-how-can-i-make-press-any-key-to-continue?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
 		read -n 1 -s -r -p "Press any key to continue"
-		exit -1
+		echo ""
+		return
 	fi
 done
 

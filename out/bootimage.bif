@@ -1,0 +1,9 @@
+image : {
+        [bootloader,destination_cpu=a53-0]/home/pfefferz/build/out/zynqmp_fsbl.elf
+        [pmufw_image]/home/pfefferz/build/out/pmufw.elf
+        [destination_cpu=a53-0, exception_level=el-3, trustzone] /home/pfefferz/build/out/bl31.elf
+        [destination_cpu=a53-0, exception_level=el-2] /home/pfefferz/build/out/u-boot.elf
+        [load=0x03000000]/home/pfefferz/build/out/uImage.bin
+        [load=0x1407f000]/home/pfefferz/build/out/system.dtb
+        [load=0x01000000]/home/pfefferz/build/out/uramdisk.image.gz
+}

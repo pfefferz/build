@@ -1,0 +1,30 @@
+# TestCase0.txt
+# Run manually
+# The following commands should be run through before pushing the build to git. plprj should not exist beforehand (this tests whether the build can be expanded into a fresh folder, a test that failed in the past).
+
+cd ~
+mkdir plprj
+cd build
+source setup_env.sh
+source tools/create_petalinux_build_from_bsp.sh
+source tools/cp_bins_for_jtag_load.sh
+
+#Test Non-U-Boot load
+source tools/reset_to_jtag_boot.sh
+source tools/jtag_load.sh
+
+#Test U-Boot load
+source tools/reset_to_jtag_boot.sh
+source tools/jtag_load_u-boot.sh
+#You may have to wait a 3 min for the U-Boot command line to come up.
+#Run bootm 00080000 01000000 1407f000 from the U-Boot command line to boot Linux
+#Username is root, password is root.
+
+#Test program image
+source tools/prep_image_ramdisk_for_uboot.sh
+source tools/cp_bins_for_jtag_load.sh
+source tools/run_bootgen.sh
+source tools/reset_to_jtag_boot.sh
+source tools/program_spi.sh
+
+#After programming reset the unit and run bootm 03000000 01000000 1407f000
