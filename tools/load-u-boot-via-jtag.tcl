@@ -97,11 +97,11 @@ after 10000
 # We need to load the kernel after U-Boot has started.
 # I'm not sure why. I think its because U-Boot clears the mem its loaded to
 targets -set -nocase -filter {name =~ "*A53*#0"}
-dow -data $uImage 0x00080000
+dow -data $uImage 0x03000000
 after 2000
 
 puts "System loaded."
 puts "You may have to wait a 3 min for the U-Boot command line to come up."
-puts "Call: bootm 00080000 01000000 1407f000 from the U-Boot command line to boot Linux."
+puts "Call: bootm 03000000 01000000 1407f000 from the U-Boot command line to boot Linux."
 puts "Username is root, password is root."
 return "Success"

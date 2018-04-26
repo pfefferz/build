@@ -101,10 +101,10 @@ source tools/reset_to_jtag_boot.sh
 source tools/jtag_load_u-boot.sh
 
 You may have to wait a 3 min for the U-Boot command line to come up.
-Call: bootm 00080000 01000000 1407f000 from the U-Boot command line to boot Linux.
+Call: bootm 03000000 01000000 1407f000 from the U-Boot command line to boot Linux.
 Username is root, password is root.
 
-Note: Its takes U-Boot 2-3 minutes to get "un-stuck" from the line "zynqmp_qspi_ofdata_to_platdata: CLK 299999997." I haven't had time to fix this yet. It will eventually get unstuck. Once unstuck, type bootm 00080000 01000000 1407f000.
+Note: Its takes U-Boot 2-3 minutes to get "un-stuck" from the line "zynqmp_qspi_ofdata_to_platdata: CLK 299999997." I haven't had time to fix this yet. It will eventually get unstuck. Once unstuck, type bootm 03000000 01000000 1407f000.
 
 If you have an existing build or anytime you do a petalinux-build and want to load via U-Boot type:
 
