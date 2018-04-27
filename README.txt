@@ -20,10 +20,10 @@ The build supports:
 - Loading via JTAG: PMUFW, FSBL, a small shim that boots a Linux kernel Image that includes an initrd + DTB and ATF
 - Loading via JTAG: PMUFW, FSBL, the U-Boot bootloader that boots a Linux kernel uImage + DTB + uRamdisk and ATF
 - Creating a BOOT.bin from a BIF file that includes a PMUFW, FSBL, the U-Boot bootloader that boots a Linux kernel uImage + DTB + uRamdisk and ATF and support for programming a flash with the BOOT.bin
+- Automatically boots after a 10 second count down
 
 TODOs:
 
-- Integrate bootm
 - Integrate switch config into build (so you don't need to use a script)
 - Final SWUpdate configuration
 
@@ -101,10 +101,12 @@ source tools/reset_to_jtag_boot.sh
 source tools/jtag_load_u-boot.sh
 
 You may have to wait a 3 min for the U-Boot command line to come up.
-Call: bootm 03000000 01000000 1407f000 from the U-Boot command line to boot Linux.
+This is no longer needed, the unit will autoboot (if you interrupt boot by pressing a key you can still use this command to boot)
+    Call: bootm 03000000 01000000 1407f000 from the U-Boot command line to boot Linux.
+
 Username is root, password is root.
 
-Note: Its takes U-Boot 2-3 minutes to get "un-stuck" from the line "zynqmp_qspi_ofdata_to_platdata: CLK 299999997." I haven't had time to fix this yet. It will eventually get unstuck. Once unstuck, type bootm 03000000 01000000 1407f000.
+Note: Its takes U-Boot 2-3 minutes to get "un-stuck" from the line "zynqmp_qspi_ofdata_to_platdata: CLK 299999997." I haven't had time to fix this yet. It will eventually get unstuck. Once unstuck, the unit will count down from 10 and boot.
 
 If you have an existing build or anytime you do a petalinux-build and want to load via U-Boot type:
 
@@ -189,7 +191,7 @@ Note: you can also change the paths in the following and run it:
 4001 x-x x
 4000 x x-x
 
-6. The build will boot up to U-Boot. Run the following to load the kernel, dtb and ramdisk:
+6. The build will boot up to U-Boot then continue booting to a command prompt. You can interrupt the U-Boot boot counter by pressing a key in a console attached to the unit to stop boot. If you stop boot, run the following to load the kernel, dtb and ramdisk:
 bootm 03000000 01000000 1407f000
 
 

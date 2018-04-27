@@ -102,6 +102,7 @@ after 2000
 
 puts "System loaded."
 puts "You may have to wait a 3 min for the U-Boot command line to come up."
-puts "Call: bootm 03000000 01000000 1407f000 from the U-Boot command line to boot Linux."
+puts "There is no need to call the following unless you interrupt boot by pressing a key:"
+puts "    Call: bootm 03000000 01000000 1407f000 from the U-Boot command line to boot Linux."
 puts "Username is root, password is root."
 return "Success"
