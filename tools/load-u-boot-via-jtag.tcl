@@ -68,7 +68,7 @@ after 4000; stop; catch {stop}; psu_ps_pl_isolation_removal; psu_ps_pl_reset_con
 
 
 
-turn_on_switch
+#turn_on_switch
 
 targets -set -nocase -filter {name =~ "*A53*#0"}
 dow -data $uramdisk_image_gz 0x01000000

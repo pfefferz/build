@@ -64,7 +64,7 @@ after 4000; stop; catch {stop}; psu_ps_pl_isolation_removal; psu_ps_pl_reset_con
 
 
 
-turn_on_switch
+#turn_on_switch
 
 targets -set -nocase -filter {name =~ "*A53*#0"}
 dow -data $Image 0x00080000
