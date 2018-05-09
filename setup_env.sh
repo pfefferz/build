@@ -30,7 +30,7 @@
 # Where PetaLinux Tools is installed
 export PETALINUX_TOOLS_INSTALL_DIR=/home/pfefferz/tools/opt/pkg/petalinux
 # A directory that will contain the PetaLinux project
-export PETALINUX_PROJS_DIR=/home/pfefferz/plprj3
+export PETALINUX_PROJS_DIR=/home/pfefferz/plprj4
 # The path to the SDK
 export PATH_TO_XSCT=/hdd/opt/Xilinx/SDK/2017.4/bin/
 # How to connect to the JTAG
