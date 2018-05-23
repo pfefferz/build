@@ -1,0 +1,39 @@
+
+software =
+{ 
+	/* version is required. Does it matter if
+         * the value doesn't match /etc/hwrevision?
+         */
+
+	version = "0.1";
+
+	/* hardware-compatibility is also required
+	 * Again, does the value matter
+     	 */
+
+	hardware-compatibility: [ "1.0" ]; 
+ 
+	stable:
+	{
+		alt:
+		{
+
+ 	       		images: (
+       	       		{
+				filename = "BOOT.bin.new";
+                        	device = "/dev/mtd3";
+               		}
+			);
+		};
+		main:
+		{
+			images: (
+                	{
+				filename = "BOOT.bin.orig";
+                        	device = "/dev/mtd4";
+                	}
+			);
+		};
+        };
+}
+

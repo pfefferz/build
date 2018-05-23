@@ -20,7 +20,7 @@ printf "%s\n" \
 > $PETALINUX_BUILD_OUT/bootimage.bif
 
 pushd $PETALINUX_BUILD_OUT
-P="$PATH_TO_XSCT/bootgen -arch zynqmp -image $PETALINUX_BUILD_OUT/bootimage.bif -w -o $PETALINUX_BUILD_OUT/BOOT.bin"
+P="$PATH_TO_XSCT/bootgen -log trace -arch zynqmp -image $PETALINUX_BUILD_OUT/bootimage.bif -w -o $PETALINUX_BUILD_OUT/BOOT.bin"
 echo $P
 $P
 popd

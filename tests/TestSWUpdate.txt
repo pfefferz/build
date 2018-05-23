@@ -1,0 +1,57 @@
+# Create my-software_1.0.swu and the BOOT.bins
+# The script can be changed to use different BOOT.bins
+source tools/create_swu.sh
+
+# To look at the CPIO archive run
+mkdir testcpio
+cd testcpio
+cpio -idv < ../out/*.swu
+
+# Transfer my-software_1.0.swu to remotelab-01
+scp out/my-software_1.0.swu remotelab-01:~/
+
+# If the network connection hasn't been set up of remotelab-01 do this
+export PATH=$PATH:/sbin
+sudo ifconfig enp3s0 192.169.1.11
+
+# On remotelab-01, transfer the swu file to the target
+scp ~/my-software_1.0.swu root@192.169.1.10:~/
+
+
+# You need to erase before updating, if you don't I've seen it not work
+mtd_debug erase /dev/mtd3 0x0 0x1540000
+mtd_debug erase /dev/mtd4 0x0 0x1540000
+
+
+# On the target:
+# Do this to install the alt image
+swupdate_unstripped -v -H"0.1":"1.0" -i ~/my-software_1.0.swu -e stable,alt
+
+# Do this to install the main image
+swupdate_unstripped -v -H"0.1":"1.0" -i ~/my-software_1.0.swu -e stable,main
+
+
+# Check that both images exist
+mtd_debug read /dev/mtd3 0x0 0x80000 mtd3.Should.have.XLNX
+hexdump -C mtd3.Should.have.XLNX | less
+
+mtd_debug read /dev/mtd4 0x0 0x80000 mtd4.Should.have.XLNX
+hexdump -C mtd4.Should.have.XLNX | less
+
+# Reboot the device
+
+# To test that the first BOOT.bin was booted, you should see in XSCT:
+xsct% mrd 0XFFCA0010
+FFCA0010:   00000000
+
+# To test that the second BOOT.bin was booted nuke the first 32 kB of the mtd3 with
+# On target:
+mtd_debug erase /dev/mtd3 0x0 0x80000
+
+# Reset the device
+# Push the button or reset with a remote power supply
+outp 0
+
+# Now you should see the following:
+xsct% mrd 0XFFCA0010
+FFCA0010:   000002A8
